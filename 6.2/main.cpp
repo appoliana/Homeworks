@@ -44,7 +44,6 @@ int main(int argc, char** argv) {
     Stack* stack = createStack();
     char *arrayBrace = new char[10000];
     char brace = '0';
-    int value2 = 0;
     int value = 0;
     cout << "Введите скобочки (они могут быть шести типов: {, }, [, ], (, ): ";
     cin >> arrayBrace;
@@ -79,5 +78,8 @@ int main(int argc, char** argv) {
     delete[] arrayBrace;
     return 0;
 }
+
+// ввод: ([{}()]) вывод: Баланс скобок соблюден! =)
+// ввод: ){} вывод: Баланс скобок не соблюден
 
 

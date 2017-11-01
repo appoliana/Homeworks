@@ -16,4 +16,3 @@ Stack *createStack();
 
 // удаление стека
 void deleteStack(Stack *stack);
-

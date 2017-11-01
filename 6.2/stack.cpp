@@ -43,6 +43,3 @@ int pop(Stack *stack) {
     stack->head = newHead;
     return val;
 }
-
-
-
