@@ -3,11 +3,16 @@
 
 using namespace std;
 
-struct Tree
+struct TreeNode
 {
     int value;
-    Tree *left;
-    Tree *right;
+    TreeNode *left;
+    TreeNode *right;
+};
+
+struct BinarySearchTree
+{
+    TreeNode *root;
 };
 
 BinarySearchTree *createTree()
@@ -17,7 +22,7 @@ BinarySearchTree *createTree()
     return tree;
 }
 
-void clearNode(Tree *node)
+void clearNode(TreeNode *node)
 {
     if (node == nullptr)
         return;
@@ -33,7 +38,7 @@ void clearTree(BinarySearchTree *tree)
     tree->root = nullptr;
 }
 
-bool containsNode(Tree *node, int value)
+bool containsNode(TreeNode *node, int value)
 {
     if (node == nullptr)
         return false;
@@ -52,16 +57,16 @@ bool contains(BinarySearchTree *tree, int value)
     return containsNode(tree->root, value);
 }
 
-Tree *createNode(int value)
+TreeNode *createNode(int value)
 {
-    Tree *node = new Tree;
+    TreeNode *node = new TreeNode;
     node->value = value;
     node->left = nullptr;
     node->right = nullptr;
     return node;
 }
 
-bool addNode(Tree *&node, int value)
+bool addNode(TreeNode *&node, int value)
 {
     if (node == nullptr)
     {
@@ -83,14 +88,14 @@ bool add(BinarySearchTree *tree, int value)
     return addNode(tree->root, value);
 }
 
-Tree *findMax(Tree *node)
+TreeNode *findMax(TreeNode *node)
 {
     while (node->right != nullptr)
         node = node->right;
     return node;
 }
 
-void printNodeMax(Tree *node)
+void printNodeMax(TreeNode *node)
 {
     if (node == nullptr)
         return;
@@ -100,7 +105,7 @@ void printNodeMax(Tree *node)
     printNodeMax(node->left);
 }
 
-void printNodeMin(Tree *node)
+void printNodeMin(TreeNode *node)
 {
     if (node == nullptr)
         return;
