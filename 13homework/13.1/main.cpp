@@ -15,7 +15,7 @@ bool isRight(char ch) {
 } 
 
 int main(int argc, char** argv) {
-    char str[100] = "18.3E-2";
+    char str[10] = "18";
     int i = 0;
     bool pointWas = false;
     bool eWas = false;
@@ -70,19 +70,18 @@ int main(int argc, char** argv) {
                 
             default:
                 break; 
-                
-            if (state == Status::fail) {
-                break;
-            }
         }
         if (state == Status::fail) {
-            cout << "String is not rigth \n" << endl;
-            break;
-        }
-        else {
-            cout << "String is rigth \n" << endl;
+             break;
         }
     }
+    if (state != Status::readNextSymbol) {
+        cout << "String is not rigth \n" << endl;
+    }
+    else {
+        cout << "String is rigth \n" << endl;
+    }
+    
     return 0;
 }
 //digit+ (. digit+)? (E(+ | -)? digit+)?
