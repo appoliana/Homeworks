@@ -25,8 +25,8 @@ string algorithmKMP (string s, string p)
     M = p.length();
     string uniqElement = "@";
     string sum = p + uniqElement + s;
-    
-    string result;
+    // cout << sum;
+    string result = "0";
     int *value = new int[N + M + 1];
     value[0] = 0;
     int count = 0;
@@ -76,19 +76,15 @@ int main(int argc, char** argv) {
     int lengthP = strlen(p) + strlen(s) + 1;
     */
     string s = "ababba";
+    cout << "Исходная строка s: " << s << endl;
     string p = "ab";
-    string result = 0;
+    cout << "Образец p: " << p << endl;
+    string result = "0";
   
-    //for (int i = 0; i < lengthS; i++) {
-      //  
-    //}
-    
     result = algorithmKMP(s, p);
     
-    cout << "Вхождения образа p в строку s: " << endl;
-    for (int i = 0; i < result.length(); i++) {
-        cout << result[i] << endl;
-    }
+    cout << "Номера вхождений образа p в строку s: " << result << endl;
+   
     return 0;
 }
 
