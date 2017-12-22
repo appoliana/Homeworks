@@ -30,16 +30,10 @@
 *.exe
 *.out
 *.app
-/6 homework/6.3/build/
-/6 homework/Test 1.2/build/
-/6 homework/Test 1.2/dist/
-/NewFolder/Test 1.2/build/
-/NewFolder/Test 1.2/dist/
-/7 homework/7.1/build/
-/7 homework/7.1/dist/
-/7homework/7.1(2)/build/
-/7homework/7.1(2)/dist/
-/7homework/7.1/dist/
-/7homework/7.1_2_/dist/
-/6homework/6.1/dist/
-/6homework/6.1/build/
+
+**/nbproject/private/
+**/build/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
