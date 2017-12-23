@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
                     if (str[i] == '+' || str[i] == '-') {
                         signWas = true;
                     }
-                    if ((str[i] == 'E' && pointWas == false) || ((str[i] == '+') || str[i] == '-') && eWas == false) {
+                    if ((str[i] == 'E' && pointWas == false) || ((str[i] == '+' || str[i] == '-') && eWas == false)) {
                         state = Status::fail;
                         continue;
                     }
@@ -80,8 +80,7 @@ int main(int argc, char** argv) {
     }
     else {
         cout << "String is rigth \n" << endl;
-    }
-    
+    }  
     return 0;
 }
 //digit+ (. digit+)? (E(+ | -)? digit+)?

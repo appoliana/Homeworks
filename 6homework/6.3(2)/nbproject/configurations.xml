@@ -4,12 +4,14 @@
     <logicalFolder name="SourceFiles"
                    displayName="Исходные файлы"
                    projectFiles="true">
+      <itemPath>changes.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>stack1.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Файлы заголовков"
                    projectFiles="true">
+      <itemPath>changes.h</itemPath>
       <itemPath>stack1.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -41,6 +43,10 @@
           <standard>8</standard>
         </ccTool>
       </compileType>
+      <item path="changes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="changes.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="stack1.cpp" ex="false" tool="1" flavor2="0">
@@ -68,6 +74,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="changes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="changes.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="stack1.cpp" ex="false" tool="1" flavor2="0">

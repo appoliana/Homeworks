@@ -39,10 +39,19 @@ int main(int argc, char** argv) {
 	bit = (bit & array1[i]) | (bit & array2[i]) | (array2[i] & array1[i]);
     }
  
-    cout << "Сумма в десятичном представлении: ";
+    cout << "Сумма в двоичном представлении: " << endl;
     for (int i = 31; i >= 0; --i) {
         cout << arraySum[i];
     }
+    cout << endl;
+    
+    int sum = 0;
+    int stepen = 1;
+    for (int i = 0; i < 32; ++i) {
+        sum += arraySum[i] * stepen;
+        stepen = stepen * 2;
+    }
+    cout << "Число в десятичном представлении: " << sum;
     
     delete[] array1;
     delete[] array2;

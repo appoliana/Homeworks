@@ -1,57 +1,53 @@
-#include "list.h"
-#include <cstdlib>
 #include <iostream>
+#include <cstdlib>
+#include <stdio.h>
+#include "cyclelist.h"
 
 using namespace std;
 
-void fileFile () {
-    FILE *in = fopen("file.txt", "wr");
-    fclose(in);
-}
 
-int main(int argc, char** argv) {
-    List* list = createList();
-    fileFile;
-    FILE *out = fopen("file.txt", "r");
-    /*if (out == NULL) { 
-        printf("File not opened");
-        return 1;
-    }
-    /*for (ListElement *i = first(list); !isEnd(i); i = next(i)) { 
-        char *data[100];
-        for (int i = 0; i < 100; i++) {
-            data[i] = NULL;
+
+int main(int argc, char** argv) 
+{
+	List list1;
+        List list2;
+        
+        Node* tempNode1;
+        Node* tempNode2;
+        FILE* file = fopen("s.txt", "r");
+        if (!feof(file)) {
+            fscanf(file, "%d", &element);
+            addElement(list1, element);
+            fscanf(file, "%d", &element);
+            addElement(list1, element);
+            count++;
         }
-        int readLines = 0;
-        while (!feof(out)) {  // feof -- конец файла 
-            char *buffer = new char[1000];
-            int bytesRead = fscanf(out, "%s", buffer);
-                if (bytesRead < 0) {
+        fclose(file);
+        int choose = 0;
+        cout << "Введите 1 для сортировки справочника по телефону, 2 - по имени: " << endl;
+        cin >> choose;
+        switch(choose) {
+            case 1: 
+            {
+                initialisation(tempNode1, tempNode2, list1, list2, choose);
+                printList(list1);
                 break;
             }
-            data[readLines] = buffer;
-            insert(next(first(list)), buffer);
-            ++readLines; 
-    }
-    fclose(out);
-    }
-    
-    
-    //сортировка
-    /*int chose = 0;
-    cout << "Введите 1, если хотите отсортировать записи по номерам, 2 - если хотите отсортировать записи по имени" << endl;
-    cin >> choose;
-    switch (choose) {
-        case 1: 
-        {
-            
+            case 2:
+            {
+               initialisation(tempNode1, tempNode2, list1, list2, choose);
+               printList(list1);
+               break; 
+            }
+            default:
+            {
+                cout << "Введена неопознанная команда!";
+                return 1;
+            }
         }
-        case 2:
-        {
-            
-        }
-    }
-    */
-    return 0;
-}
 
+	deleteList(list1);
+	deleteList(list2);
+                
+	return 0;
+}

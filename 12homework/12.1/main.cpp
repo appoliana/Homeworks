@@ -8,28 +8,25 @@ using namespace std;
 
 void algorithmKMP (string s, string p)
 {
-    int i, j, N, M;
-    N = s.length();
-    M = p.length();
+    const int n = s.length();
+    const int m = p.length();
     string uniqElement = "@";
     string sum = p + uniqElement + s;
     cout << sum << endl;
-    int *result = new int[s.length() + p.length()];
-    int *value = new int[N + M + 1];
-    value[0] = 0;
-    for (i = 1; i < N + M + 1; i++) 
+    int *prefixFunction = new int[n + m + 1]{};
+    for (int i = 1; i < n + m + 1; i++) 
     {
-        j = 0;
+        int j = 0;
         if (sum[i] != sum[j]) 
         {
-            value[i] = 0;
+            prefixFunction[i] = 0;
             continue;
         }
         else 
         {
             while (sum[i] == sum[j]) 
             {
-                value[i] = j + 1;
+                prefixFunction[i] = j + 1;
                 j++;
                 i++;
             }
@@ -37,20 +34,19 @@ void algorithmKMP (string s, string p)
         i--; 
     }
  
-    for (int i = 0; i < N + M + 1; i++) 
+    for (int i = 0; i < n + m + 1; i++) 
     {
-        if (value[i] == M){
-            cout << i - 3 << " - вхождение" << endl;
+        if (prefixFunction[i] == m) {
+            cout << i - m - 1 << " - вхождение" << endl;
         }
     }
-    
-    delete[] value;
+    delete[] prefixFunction;
 }
 
 int main(int argc, char** argv) {
-    string s = "ababba";
+    string s = "jdiojcskdjsoijfdj";
     cout << "Исходная строка s: " << s << endl;
-    string p = "ab";
+    string p = "dj";
     cout << "Образец p: " << p << endl;
   
     algorithmKMP(s, p);

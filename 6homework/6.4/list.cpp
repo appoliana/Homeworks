@@ -1,56 +1,144 @@
-#include "list.h"
+#include <iostream>
+#include <cstdlib>
 
-List* createList () 
+using namespace std;
+
+struct Node
 {
-    return new List{new ListElement{0, nullptr}};
+	string element = "0";
+	Node* next = nullptr;
+};
+
+struct List
+{
+	Node* start = nullptr;
+        Node* last = nullptr;
+};
+
+Node* newNode(int element, Node *next = nullptr)
+{
+	Node* result = new Node();
+	result->element = element;
+	result->next = next;
+	return result;
 }
 
-void deleteList(List *list) 
+Node* last(List& list, int element)
 {
-    while (list->sentinel) { //переносим ссылку на следующий элемент
-        ListElement *temp = list->sentinel;
-        list->sentinel = list->sentinel->next;
-        delete temp;
+	if (list.start == nullptr)
+	{
+		return nullptr;
+	}
+
+	Node* node = list.start;
+	while (node->next != nullptr)
+	{
+		node = node->next;
+	}
+
+	return node;
+}
+
+void addElement(List& list, string element)
+{
+	Node* previousNode = last(list, element);
+	if (previousNode != nullptr)
+	{
+		previousNode->next = newNode(element, previousNode->next);
+	}
+	else
+	{
+		list.start = newNode(element, list.start);
+	}
+}
+
+void printList(List& list)
+{
+	Node* node = list.start;
+
+	if (node != nullptr)
+	{
+		while (node != nullptr)
+		{
+			cout << node->element << " ";
+			node = node->next;
+		}
+	}
+}
+
+void deleteList(List& list)
+{
+	while (list.start != nullptr)
+	{
+
+		Node* node = list.start;
+		list.start = list.start->next;
+		delete node;
+	}
+}
+
+void mergeByPhone(Node* tempNode1, Node* tempNode2, List &list1, List &list2, int count) {
+    tempNode1 = list1.start->next;
+    tempNode2 = list2.start->next;
+    int length = 0;
+    while (length <= count) {
+        if (tempNode1->element < tempNode2->element) {
+            Node* tempNode3 = tempNode1->element->next;
+            tempNode1->element->next = tempNode2;
+            tempNode2->next = tempNode3;
+        }
+        else {
+            tempNode1->element = tempNode->element->next->next;
+            length++;
+        }
     }
-    delete list;
 }
 
-void insert(ListElement *previous, int value) 
-{
-    ListElement* newElement = new ListElement{value, previous->next};
-    previous->next = newElement;
+void mergeByName(Node* tempNode1, Node* tempNode2, List &list1, List &list2, int count) {
+    tempNode1 = list1.start;
+    tempNode2 = list2.start;
+    int length = 0;
+    while (length <= count) {
+        if (tempNode1->element < tempNode2->element) {
+            Node* tempNode3 = tempNode1->element->next;
+            tempNode1->element->next = tempNode2;
+            tempNode2->next = tempNode3;
+        }
+        else {
+            tempNode1->element = tempNode->element->next->next;
+            length++;
+        }
+    }
 }
 
-ListElement* first(List *list)
+void initialisation(Node* tempNode1, Node* tempNode2, List &list1, List &list2, int choose)
 {
-    return list->sentinel->next;
+	string element = "0";
+        int count = 0;
+	FILE* file = fopen("s.txt", "r");
+        if (!feof(file)) {
+            fscanf(file, "%d", &element);
+            addElement(list2, element);
+            fscanf(file, "%d", &element);
+            addElement(list2, element);
+            count++;
+        }
+        if (feof(file)) {
+            fclose(file);
+            return 2;
+        }
+        
+        if (choose == 0) 
+        {
+            mergeName(tempNode1, tempNode2, list1, list2, count);
+        }
+        else 
+        {
+            mergePhone(tempNode1, tempNode2, list1, list2, count);
+        }
+        
+        initialisation(tempNode1, tempNode2, list1, list2, choose);   
 }
 
-ListElement *sentinel(List *list)
-{
-    return list->sentinel;
-}
-
-ListElement* next(ListElement* element)
-{
-    return element->next;
-}
-
-bool isEnd(ListElement* element)
-{
-    return element == nullptr;
-}
-
-int value(ListElement* element)
-{
-    return element->value;
-}
-
-void deleteElement(ListElement *previous) 
-{
-    ListElement *temp = previous->next;
-    previous->next = previous->next->next;
-    delete temp;
-}
 
 

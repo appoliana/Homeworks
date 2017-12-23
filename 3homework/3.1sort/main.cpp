@@ -4,13 +4,15 @@
 
 using namespace std;
 
+const int arraySize = 100;
+
 void insertSort(int array[], int aLeft, int aRight) 
 {
     for (int i = aLeft + 1; i != aRight + 1; ++i) {
 	int j = i;
 	while (j > 1 && array[j] < array[j - 1]) {
             swap(array[j], array[j - 1]);
-		--j;
+            --j;
         }
     }
 }
@@ -33,28 +35,33 @@ int partition(int array[], int aLeft, int aRight)
 void qSort(int array[], int aLeft, int aRight) 
 {
     if (aLeft >= aRight) 
+    {
 	return;
-    if (aRight - aLeft < 10) { 	
+    }
+    if (aRight - aLeft < 10) 
+    { 	
         insertSort(array, aLeft, aRight);       
     }
-    else {
-	int pivot = partition(array, aLeft, aRight); 
+    else 
+    {
+	const int pivot = partition(array, aLeft, aRight); 
 	qSort(array, aLeft, pivot - 1);
 	qSort(array, pivot + 1, aRight);
     }
 }
+
 int main(int argc, char** argv) {
-    int *array = new int [10];
-    for (int i = 0; i < 10; i ++) {
-        array[i] = rand () % 10;
+    int *array = new int [arraySize];
+    for (int i = 0; i < arraySize; i ++) {
+        array[i] = rand () % 1;
         cout << array[i] << " ";
     }
     cout << endl;
     
-    qSort(array, 0, 9);
+    qSort(array, 0, arraySize - 1);
     
     cout << "Отсортированный массив: " << endl;
-    for (int i = 0; i < 10; i ++) {
+    for (int i = 0; i < arraySize; i ++) {
         cout << array[i] << " ";
     }
     

@@ -1,13 +1,18 @@
 #pragma once
 
 struct ListElement {
-    int value;
+    Directory contact;
     ListElement *next;
 };
 
-
 struct List {
-    ListElement *sentinel;
+    ListElement *first;
+    ListElement *last;
+};
+
+struct Directory {
+    char name[20];
+    char phone[20];
 };
 
 List* createList();
@@ -15,8 +20,6 @@ List* createList();
 void insert(ListElement *previous, int value);
 
 void deleteList(List *list);
-
-int move(List *list, int number);
 
 ListElement *first(List *list);
 
