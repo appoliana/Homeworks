@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int main()
-{
+int main(int argc, char** argv) {
     BinarySearchTree *tree = createTree();
     add(tree, 4);
     add(tree, 8);
@@ -14,21 +13,23 @@ int main()
     int choose = 0;
     cout << "Введите 1 для вывода элементов в порядке возрастания, 2 - в порядке убывания: " << endl;
     cin >> choose;
-    switch (choose) {
-        case 1:
-        {
-            printMin(tree);
-            break;
-        }
-        case 2:
-        {
-            printMax(tree);
-            break;
-        }
-        default:
-        {
-            cout << "Введена неопознанная команда!";
-            return 1;
+    while (choose != 0) {
+        switch (choose) {
+            case 1:
+            {
+                printMin(tree);
+                break;
+            }
+            case 2:
+            {
+                printMax(tree);
+                break;
+            }
+            default:
+            {
+                cout << "Введена неопознанная команда!";
+                return 1;
+            }
         }
     }
     clearTree(tree);
