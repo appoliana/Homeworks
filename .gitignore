@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+/13homework/13.2/build/
+/13homework/13.2/dist/
+/7homework/7.2/build/
+/7homework/7.2/dist/
