@@ -35,24 +35,28 @@ int main(int argc, char** argv) {
                 break; 
                 
             case Status::readLetter:
+            {
                 if (isRight(str[i])) {
                     state = Status::readNextSymbol;
                     if (str[i] == '.') {
                         pointWas = true;
+                        state = Status::readNextSymbol;
                     }
                     if (str[i] == 'E') {
                         eWas = true;
+                        state = Status::readNextSymbol;
                     }
                     if (str[i] == '+' || str[i] == '-') {
                         signWas = true;
+                        state = Status::readNextSymbol;
                     }
                     if ((str[i] == 'E' && pointWas == false) || ((str[i] == '+' || str[i] == '-') && eWas == false)) {
                         state = Status::fail;
-                        continue;
+                        break;
                     }
-                    if ((str[i] == '+' || str[i] == '-') && str[i + 1] == '\0') {
-                        state = Status::fail;
-                        continue;
+                    if ((eWas == true && (str[i] == '+' || str[i] == '-')) && str[i + 1] == '\0') {
+                        state = Status::readNextSymbol;
+                        break;
                     }
                     i++;
                 }
@@ -60,19 +64,18 @@ int main(int argc, char** argv) {
                     state = Status::fail;
                 }
                 break;
-                
+            }  
             case Status::readNextSymbol:
                 if(!isRight(str[i])) {
                     state = Status::fail;
+                    break;
                 }
-                i++;
-                break;
                 
             default:
                 break; 
         }
         if (state == Status::fail) {
-             break;
+            break;
         }
     }
     if (state != Status::readNextSymbol) {
