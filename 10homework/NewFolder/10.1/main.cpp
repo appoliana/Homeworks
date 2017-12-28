@@ -103,7 +103,7 @@ int main() {
         }
     }
 
-    cout << "������ ���������� �� ������� �������: ";
+    cout << "Распределение городов по столицам: ";
     for (int i = 0; i != numberOfCapitals; ++i) {
 	countries[i] = reverseList(countries[i]);
 	cout << endl;
