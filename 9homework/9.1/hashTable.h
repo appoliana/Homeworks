@@ -6,7 +6,7 @@ struct HashTable;
 // создание хэш таблицы
 HashTable *createHashTable();
 
-// хэширование
+// вместимость
 int capacityOfHashTable(HashTable *hashTable);
 
 // добавление элемента в хэш таблицу

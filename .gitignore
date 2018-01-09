@@ -30,72 +30,11 @@
 *.exe
 *.out
 *.app
-/6 homework/6.3/build/
-/6 homework/Test 1.2/build/
-/6 homework/Test 1.2/dist/
-/NewFolder/Test 1.2/build/
-/NewFolder/Test 1.2/dist/
-/7 homework/7.1/build/
-/7 homework/7.1/dist/
-/7homework/7.1(2)/build/
-/7homework/7.1(2)/dist/
-/7homework/7.1/dist/
-/7homework/7.1_2_/dist/
-/6homework/6.1/dist/
-/6homework/6.1/build/
-/6homework/6.3(2)/build/
-/6homework/6.3(2)/dist/
-/6homework/6.3(3)/dist/
-/6homework/6.3(3)/build/
-/Test1/Test1.3(2.0)/build/
-/Test1/Test1.3(2.0)/dist/
-/Test1/BinaryTree/build/
-/6homework/6.4/build/
-/6homework/6.4/dist/
-/Test1/file/build/
-/Test1/file/dist/
-/Test1/file2/dist/
-/Test1/file2/build/
-/Test2/Test2.2/build/
-/8homework/8.1/build/
-/8homework/8.1/dist/
-/classwork/lexicalAnalis/build/
-/classwork/lexicalAnalis/dist/
-/12homework/12.1/build/
-/12homework/12.1/dist/
-/12homework/12.2/build/
-/12homework/12.2/dist/
-/3homework/NewFolder/3.1/build/
-/3homework/NewFolder/3.1/dist/
-/5homework/5.2/build/
-/13homework/13.1/build/
-/13homework/13.1/dist/
-/Test3/3.1/build/
-/Test3/3.1/dist/
-/Test3/3.2/build/
-/Test3/3.2/dist/
-/Test2.2/2.1/build/
-/Test2.2/2.1/dist/
-/Test2.2/2.2/build/
-/Test2.2/2.2/dist/
-/Test3/3.3/build/
-/Test3/3.3/dist/
-/NewFolder.4/2.2/build/
-/NewFolder.4/2.2/dist/
-/3homework/3.1sort/build/
-/3homework/3.1sort/dist/
-/5homework/5.1new/build/
-/5homework/5.1new/dist/
-/5homework/5.2/dist/
-/4homework/4.2 new/dist/
-/7homework/7.2/dist/
-/10homework/NewFolder/10.1/build/
-/10homework/NewFolder/10.1/dist/
-/10homework/10.1/build/
-/10homework/10.1/dist/
-/Zachet/3.3/build/
-/Zachet/3.3/dist/
-/5homework/5.2neww/build/
-/5homework/5.2neww/dist/
-/7homework/7.2new/build/
-/7homework/7.2new/dist/
+
+**/nbproject/private/
+**/build/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
+
