@@ -30,7 +30,7 @@ BinarySearchTree *createTree()
     return tree;
 }
 
-/*void clearNode(TreeNode *node)
+void clearNode(TreeNode *node)
 {
     if (node == nullptr)
         return;
@@ -45,9 +45,8 @@ void clearTree(BinarySearchTree *tree)
     clearNode(tree->root);
     tree->root = nullptr;
 }
-*/
 
-/*bool containsNode(BinarySearchTree *tree, TreeNode *node, const string &key)
+bool containsNode(BinarySearchTree *tree, TreeNode *node, const string &key)
 {
     if (node == nullptr)
         return false;
@@ -67,7 +66,7 @@ bool contains(BinarySearchTree *tree, const string &key)
 {
     return containsNode(tree, tree->root, key);
 }
- */
+
 
 TreeNode *createNode(int value, const string &key, TreeNode *parent)
 {
@@ -184,7 +183,7 @@ void splayTree(BinarySearchTree *tree, TreeNode * node)
     }
 }
 
-/*TreeNode* findNode(TreeNode* tree, const string& key)
+TreeNode* findNode(TreeNode* tree, const string& key)
 {
     TreeNode* current = tree;
     while (current != nullptr) {
@@ -200,4 +199,4 @@ void splayTree(BinarySearchTree *tree, TreeNode * node)
         }
     }
     return nullptr;
-*/
+}

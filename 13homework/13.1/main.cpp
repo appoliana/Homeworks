@@ -3,87 +3,190 @@
 
 using namespace std;
 
-enum class Status {
+enum class Status 
+{
     start,
-    readLetter,
-    readNextSymbol,
+    readNextSymbolStart,
+    readNextSymbolPoint,
+    readNextSymbolE,
+    pointWas,
+    eWas,
+    signWas,
     fail
 };
 
-bool isRight(char ch) {
-    return(isalpha(ch) || ch == '-' || ch == '+' || ch == '.' || ch == 'E');     
+bool isRight(char ch) 
+{
+    return (isdigit(ch) || ch == '-' || ch == '+' || ch == '.' || ch == 'E');     
 } 
 
 int main(int argc, char** argv) {
-    char str[10] = "18";
+    char str[100];
+    cout << "Enter the string you want to check: " << endl;
+    cin >> str;
+    cout << endl;
     int i = 0;
-    bool pointWas = false;
-    bool eWas = false;
-    bool signWas = false;
     Status state = Status::start;
-    while (str[i] != '\0') {
+    while (str[i] != '\0') 
+    {
         switch (state)
         {
             case Status::start:
-                if (isalpha(str[i])) {
-                    state = Status::readLetter;
+            {
+                if (isdigit(str[i])) {
+                    state = Status::readNextSymbolStart;
                     i++;
                 }
                 else {
                     state = Status::fail;
                 }
                 break; 
+            }
                 
-            case Status::readLetter:
+            case Status::pointWas:
             {
-                if (isRight(str[i])) {
-                    state = Status::readNextSymbol;
-                    if (str[i] == '.') {
-                        pointWas = true;
-                        state = Status::readNextSymbol;
+                if (isdigit(str[i])) 
+                {
+                    state = Status::readNextSymbolPoint;
+                    i++;
+                }
+                else 
+                {
+                    state = Status::fail;
+                    i++;
+                }
+                break;
+            }
+            
+            case Status::eWas:
+            {
+                if (str[i] == '+' || str[i] == '-') 
+                {
+                    state = Status::readNextSymbolE;
+                    i++;
+                }
+                else 
+                {
+                    state = Status::fail;
+                    i++;
+                }    
+                break;
+            }
+            
+            case Status::signWas:
+            {
+                if (isdigit(str[i])) 
+                {
+                    state = Status::readNextSymbolE;
+                    i++;
+                }
+                else 
+                {
+                    state = Status::fail;
+                    i++;
+                }    
+                break;
+            }
+            
+            case Status::readNextSymbolStart:
+            {
+                if (isRight(str[i])) 
+                {
+                    if (str[i] == '.')
+                    {
+                        state = Status::pointWas;
+                        i++;
                     }
-                    if (str[i] == 'E') {
-                        eWas = true;
-                        state = Status::readNextSymbol;
+                    if (str[i] == 'E')
+                    {
+                        state = Status::eWas;
+                        i++;
                     }
-                    if (str[i] == '+' || str[i] == '-') {
-                        signWas = true;
-                        state = Status::readNextSymbol;
+                    if (str[i] == '+' || str[i] == '-')
+                    {
+                        state = Status::signWas;
+                        i++;
                     }
-                    if ((str[i] == 'E' && pointWas == false) || ((str[i] == '+' || str[i] == '-') && eWas == false)) {
+                    if (isdigit(str[i]))
+                    {
+                        state = Status::readNextSymbolStart;
+                        i++;
+                    }
+                }
+                break;
+            }
+            
+            case Status::readNextSymbolPoint:
+            {
+                if (isRight(str[i])) 
+                {
+                    if (str[i] == '.')
+                    {
                         state = Status::fail;
-                        break;
+                        i++;
                     }
-                    if ((eWas == true && (str[i] == '+' || str[i] == '-')) && str[i + 1] == '\0') {
-                        state = Status::readNextSymbol;
-                        break;
+                    if (str[i] == 'E')
+                    {
+                        state = Status::eWas;
+                        i++;
                     }
+                    if (str[i] == '+' || str[i] == '-')
+                    {
+                        state = Status::signWas;
+                        i++;
+                    }
+                    if (isdigit(str[i]))
+                    {
+                        state = Status::readNextSymbolPoint;
+                        i++;
+                    }
+                }
+                else {
+                    state = Status::fail;
+                }
+                break;
+            }
+            
+            case Status::readNextSymbolE:
+            {
+                if (isdigit(str[i]))
+                {
+                    state = Status::readNextSymbolE;
                     i++;
                 }
                 else {
                     state = Status::fail;
                 }
                 break;
-            }  
-            case Status::readNextSymbol:
-                if(!isRight(str[i])) {
-                    state = Status::fail;
-                    break;
-                }
+            }
+            
+            case Status::fail:
+            {
+                break;
+            }
                 
             default:
+            {
+                state = Status::fail;
                 break; 
+            }
         }
-        if (state == Status::fail) {
+        
+        if (state == Status::fail) 
+        {
             break;
         }
     }
-    if (state != Status::readNextSymbol) {
-        cout << "String is not rigth \n" << endl;
+    
+    if (state == Status::readNextSymbolStart || state == Status::readNextSymbolE || state == Status::readNextSymbolPoint) 
+    {
+        cout << "String is right" << endl;
     }
-    else {
-        cout << "String is rigth \n" << endl;
+    else 
+    {
+        cout << "String is not right" << endl;
     }  
+    
     return 0;
 }
 //digit+ (. digit+)? (E(+ | -)? digit+)?

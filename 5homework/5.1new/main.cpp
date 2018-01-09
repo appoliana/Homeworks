@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
             case 2:
             {
                 cout << "Введите значение, которое вы хотите удалить: ";
+                cin >> value;
                 deleteElement(list, value);
                 break;
             }

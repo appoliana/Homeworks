@@ -5,26 +5,26 @@ struct List;
 
 struct ListElement;
 
-// Создание списка
+// cоздание списка
 List * createList();
 
-// Создание массива
-List ** createArrayOfList(int capacity);
+// cоздание массива списков
+List **createArrayOfList(int capacity);
 
-// ×èñëî ýëåìåíòîâ â ñïèñêå.
-size_t numberOfElementsInList(List * list);
+// количество элементов в одном списке (с коллизиями)
+int numberOfElementsInList(List *list);
 
-// Óêàçàòåëü íà ïåðâûé ýëåìåíò ñïèñêà.
-ListElement * pointerOnFirstElement(List * list);
+// указатель на первый элемент в списке
+ListElement *pointerOnFirstElement(List *list);
 
-// Добавление элемента в список
-void addElement(List * list, std::string value);
+// добавление элемента в список
+void addElement(List *list, std::string value);
 
-// Удаление элемента из списка
-void deleteElement(List * list);
+// удаление элемента из списка
+void deleteElement(List *list);
 
-// Ïåðâûé ýëåìåíò â ñïèñêå.
-std::string headValue(List * list);
+// значение элемента в голове
+std::string headValue(List *list);
 
-// Удаление списка
-void deleteList(List * list);
+// удаление списка
+void deleteList(List *list);

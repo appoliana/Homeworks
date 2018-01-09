@@ -5,90 +5,87 @@
 
 using namespace std;
 
-const int capacity = 4;
-const int sizeOfArrays = 100;
+int capacity = 10;
+int sizeOfArrays = 100;
 
 struct HashTable 
 {
-	List ** hashTable = createArrayOfList(capacity);
+    List **hashTable = createArrayOfList(capacity);
 };
 
-HashTable * createHashTable()
+HashTable *createHashTable()
 {
-	HashTable * result = new HashTable;
-	return result;
+    HashTable *result = new HashTable;
+    return result;
 };
 
-const int capacityOfHashTable(HashTable * hashTable)
+int capacityOfHashTable(HashTable *hashTable)
 {
-	return capacity;
+    return capacity;
 }
 
-int hashFunction(HashTable * hashTable, string value)
+int hashFunction(HashTable *hashTable, string value)
 {
-	int result = 0;
-	for (int i = 0; i != value.size(); ++i)
-	{
-		result += (i + 1) * static_cast<int>(value[i]);
-	}
-	return result % capacity;
+    int result = 0;
+    for (int i = 0; i != value.size(); ++i)
+    {
+	result += (i + 1) * static_cast<int>(value[i]);
+    }
+    return result % capacity;
 }
 
-void addHashElement(HashTable * hashTable, string value)
+void addHashElement(HashTable *hashTable, string value)
 {
-	int number = hashFunction(hashTable, value);
-	addElement(hashTable->hashTable[number], value);
+    addElement(hashTable->hashTable[hashFunction(hashTable, value)], value);
 }
 
-void printHashTable(HashTable * hashTable)
+void printHashTable(HashTable *hashTable)
 {
-	for (int i = 0; i != capacity; ++i)
-	{
-		if (pointerOnFirstElement(hashTable->hashTable[i]) != nullptr)
+    for (int i = 0; i != capacity; ++i)
+    {
+	if (pointerOnFirstElement(hashTable->hashTable[i]) != nullptr)
+        {
+            string words[sizeOfArrays];
+            int numberOfEachWord[sizeOfArrays] = {0};
+            int numberOfElements = numberOfElementsInList(hashTable->hashTable[i]);
+            int currentSizeOfArrays = 0;
+            for (int j = 0; j != numberOfElements; ++j) {
+		string word = headValue(hashTable->hashTable[i]);
+		int k = 0;
+		while (true)
 		{
-			string words[sizeOfArrays];
-			int numberOfEachWord[sizeOfArrays] = { 0 };
-			int numberOfElements = numberOfElementsInList(hashTable->hashTable[i]);
-			int currentSizeOfArrays = 0;
-			for (int j = 0; j != numberOfElements; ++j)
-			{
-				string word = headValue(hashTable->hashTable[i]);
-				int k = 0;
-				while (true)
-				{
-					if (words[k] == word)
-					{
-						++numberOfEachWord[k];
-						break;
-					}
-					if (words[k] == " ")
-					{
-						words[k] = word;
-						++numberOfEachWord[k];
-						++currentSizeOfArrays;
-						break;
-					}
-					++k;
-				}
-				deleteElement(hashTable->hashTable[i]);
-			}
-			for (int l = 0; l != currentSizeOfArrays; ++l)
-			{
-				cout << "Ñëîâî " << words[l];
-				cout << " âñòðå÷àåòñÿ " << numberOfEachWord[l] << " ðàç(-à).";
-				cout << endl;
-			}
-		}
+                    if (words[k] == word)
+                    {
+			++numberOfEachWord[k];
+			break;
+                    }
+                    if (words[k] == " ")
+                    {
+			words[k] = word;
+			++numberOfEachWord[k];
+			++currentSizeOfArrays;
+			break;
+                    }
+                    ++k;
+                }
+		deleteElement(hashTable->hashTable[i]);
+            }
+            for (int l = 0; l != currentSizeOfArrays; ++l) {
+                cout << "Слово " << words[l];
+                cout << " встречается " << numberOfEachWord[l] << " раз.";
+                cout << endl;
+            }
 	}
+    }
 }
 
-void deleteHashTable(HashTable * hashTable)
+void deleteHashTable(HashTable *hashTable)
 {
-	for (int i = 0; i != capacity; ++i)
-	{
-		deleteList(hashTable->hashTable[i]);
-	}
+    for (int i = 0; i != capacity; ++i)
+    {
+	deleteList(hashTable->hashTable[i]);
+    }
 
-	delete[] hashTable->hashTable;
-	delete hashTable;
+    delete[] hashTable->hashTable;
+    delete hashTable;
 }

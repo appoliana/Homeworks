@@ -7,10 +7,10 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    HashTable * hashTable = createHashTable();
+    HashTable *hashTable = createHashTable();
     ifstream input("text.txt");
+    string word;
     while (!input.eof()) {
-        string word;
 	input >> word;
 	addHashElement(hashTable, word);
     }

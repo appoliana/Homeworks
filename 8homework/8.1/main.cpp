@@ -15,7 +15,7 @@ int main(int argc, char** argv)
     
     printRoot(tree);
   
-    //clearTree(tree);
+    clearTree(tree);
     return 0;
 }
 

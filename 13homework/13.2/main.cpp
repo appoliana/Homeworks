@@ -1,63 +1,61 @@
 #include <iostream>
-#include <cstdlib>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
-int definer(char symbol) 
-{
-    if (isalpha(symbol)) 
-    {
+int status(char symbol) {
+    if (symbol == '/')
         return 0;
-    }
-    else 
-    {
-        if (isdigit(symbol) || symbol == '_') 
-        {
-            return 1;
-        }
-        else 
-        {
-            return 2;
-        }
-    }
+    if (symbol == '*')
+        return 1;
+    return 2;
 }
 
-int main(int argc, char** argv) 
-{
-    int matrix[3][3] = {{1, -1, -1}, 
-                        {2,  2, -1}, 
-                        {3,  2, -1}}; // 2 - неопознанный символ 
+int main(int argc, char** argv) {
+    int n = 0;
+    int m = 0;
+    string str;
+    ifstream input("text.txt");
+    input >> n >> m;
+    int **tableOfStates = new int *[n];
+    while (!input.eof()) {
+        for (int i = 0; i < n ; ++i) {
+            tableOfStates[i] = new int[m];
+            for (int j = 0; j < m ; ++j) {
+                input >> tableOfStates[i][j];
+                cout << tableOfStates[i][j];
+            }
+            cout << endl;
+        }
+        while (!input.eof()) {
+            input >> str;
+            cout << str;
+        }
+    }
+    cout << endl;
+    input.close();
     
-    string str = "abc1_23";
-    int state = 0;
     int i = 0;
-    while (true) 
+    int dop = status(str[i]);
+    //cout << dop;
+    int dop1 = 0;
+    for (i = 1; i < str.length(); ++i) 
     {
-        if (matrix[state][definer(str[i])] == -1) 
+        dop1 = status(str[i]);
+        if (tableOfStates[dop][dop1] == 1) 
         {
-            break;
-        }
-        else 
-        {
-            if (matrix[state][definer(str[i])] == 1)
+            cout << str[i - 1];
+            while (tableOfStates[dop][dop1] != 2) 
             {
+                cout << str[i];
+                dop = status(str[i]);
                 i++;
-                state = 1;
+                dop1 = status(str[i]);
             }
-            else 
-            {
-                i++;
-                state = 2; 
-            }
+            cout << str[i];
         }
-    }
-    if (state != 2) 
-    {
-        cout << "String is rigth \n" << endl;
-    }
-    else 
-    {
-        cout << "String is not rigth \n" << endl;
+        dop = status(str[i]);
     }
     return 0;
 }

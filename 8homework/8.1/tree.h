@@ -9,13 +9,13 @@ struct BinarySearchTree;
 BinarySearchTree *createTree();
 
 // удаление узла
-//void clearNode(TreeNode *node);
+void clearNode(TreeNode *node);
 
 // удаление дерева  
-//void clearTree(BinarySearchTree *tree);
+void clearTree(BinarySearchTree *tree);
 
 // поиск значения
-//bool contains(BinarySearchTree *tree, int value);
+bool contains(BinarySearchTree *tree, int value);
 
 // добавление значения
 bool add(BinarySearchTree *tree, int value, const std::string &key);

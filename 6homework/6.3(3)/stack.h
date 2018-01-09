@@ -1,21 +1,20 @@
-/* 
- * File:   stack.h
- * Author: polinapicchio
- *
- * Created on 23 ноября 2017 г., 18:03
- */
+#pragma once
 
-#ifndef STACK_H
-#define	STACK_H
+struct StackElement;
 
-class stack {
-public:
-    stack();
-    stack(const stack& orig);
-    virtual ~stack();
-private:
+struct Stack;
 
-};
+void push(Stack *stack, int value);
 
-#endif	/* STACK_H */
+int pop(Stack *stack);
+
+bool isEmpty(Stack *stack);
+
+Stack *createStack();
+
+void deleteStack(Stack *stack);
+
+int top(Stack *stack);
+
+int countOfElements(Stack *stack);
 

@@ -31,29 +31,41 @@ void deleteList(List *list)
 void insert(List *list, int value) 
 {
     ListElement *element = list->head;
-    if (list->head != nullptr  && list->head->next == nullptr) {
+    if (element->next == nullptr) {
         ListElement *newElement = new ListElement;
         newElement->next = nullptr;
         newElement->value = value;
-        list->head->next = newElement;
+        element->next = newElement;
     }
     else {
-        if (list->head == nullptr) {
+        element = element->next;
+        if (value >= element->value && element->next == nullptr) {
             ListElement *newElement = new ListElement;
-            newElement->next = nullptr;
             newElement->value = value;
-            list->head = newElement;
+            element->next = newElement;
+            newElement->next = nullptr;
         }
-        else {
-            while (element->next != nullptr) {
-                if (value  <= element->value && value >= element->next->value) {
+        else if (value < element->value ) {
+            ListElement *newElement = new ListElement;
+            newElement->value = value;
+            newElement->next = element;
+            list->head->next = newElement;
+        } else {
+            while (true) {
+                if (element->next == nullptr) {
+                    ListElement *newElement = new ListElement;
+                    newElement->value = value;
+                    newElement->next = nullptr;
+                    element->next = newElement;
+                    break;
+                } else if (value > element->value && value <= element->next->value) {
                     ListElement *temp = element->next;
                     ListElement *newElement = new ListElement;
                     newElement->value = value;
                     element->next = newElement;
                     newElement->next = temp;
-                }
-                else {
+                    break;
+                } else {
                     element = element->next;
                 }
             }
@@ -74,10 +86,10 @@ void print(List *list) {
 int deleteElement(List *list, int value) 
 {
     ListElement *element = list->head;
-    if(list->head->value == value) {
-        ListElement *temp = list->head; 
-        list->head = list->head->next; 
-        delete temp;
+    if (element->next->value == value) {
+        ListElement *temp = element->next->next;
+        delete element->next;
+        list->head->next = temp; 
         return 0;
     }
     while (element->next != nullptr) {

@@ -88,13 +88,6 @@ bool add(BinarySearchTree *tree, int value)
     return addNode(tree->root, value);
 }
 
-TreeNode *findMax(TreeNode *node)
-{
-    while (node->right != nullptr)
-        node = node->right;
-    return node;
-}
-
 void printNodeMax(TreeNode *node)
 {
     if (node == nullptr)
@@ -125,6 +118,47 @@ void printMin(BinarySearchTree *tree)
 {
     printNodeMin(tree->root);
     cout << endl;
+}
+
+TreeNode *findMin(TreeNode *node);
+
+void deleteElement(TreeNode *&node, int value)
+{
+    if (value < node->value) {
+        deleteElement(node->left, value);
+    } else if (value > node->value) {
+	deleteElement(node->right, value);
+    } else {
+	if (node->left == nullptr && node->right == nullptr) {
+            delete node;
+            node = nullptr;
+	} else if (node->left == nullptr) {
+            TreeNode *newNode = node->right;
+            delete node;
+            node = newNode;
+	} else if (node->right == nullptr) {
+            TreeNode *newNode = node->left;
+            delete node;
+            node = newNode;
+	}
+        else {
+            TreeNode *newNode = findMin(node->right);
+            node->value = newNode->value;
+            deleteElement(node->right, node->value);
+        }
+    }
+}
+
+TreeNode *findMin(TreeNode *node)
+{
+    while (node->left != nullptr)
+        node = node->left;
+    return node;
+}
+
+void remove(BinarySearchTree *tree, int value)
+{
+    deleteElement(tree->root, value);
 }
 
 

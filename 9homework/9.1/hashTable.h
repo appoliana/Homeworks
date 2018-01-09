@@ -3,17 +3,17 @@
 
 struct HashTable;
 
-// Создание хэш таблицы
-HashTable * createHashTable();
+// создание хэш таблицы
+HashTable *createHashTable();
 
-// Ключ
-const int capacityOfHashTable(HashTable * hashTable);
+// хэширование
+int capacityOfHashTable(HashTable *hashTable);
 
-// Добавление элемента 
-void addHashElement(HashTable * hashTable, std::string value);
+// добавление элемента в хэш таблицу
+void addHashElement(HashTable *hashTable, std::string value);
 
-// Печать хэш таблицы 
-void printHashTable(HashTable * hashTable);
+// печать хэш таблицы 
+void printHashTable(HashTable *hashTable);
 
-// Удаление элемента
-void deleteHashTable(HashTable * hashTable);
+// удаление элемента из хэш таблицы
+void deleteHashTable(HashTable *hashTable);

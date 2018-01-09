@@ -7,15 +7,19 @@ void menu() {
     cout << "Введите 1 для вывода элементов в порядке возрастания;" << endl;
     cout << "Введите 2 для вывода элементов в порядке убывания;" << endl;
     cout << "Введите 0 для завершения работы программы;" << endl;
+    cout << "Введите 3 для удаления элемента;" << endl;
 }
 
 int main(int argc, char** argv) {
     BinarySearchTree *tree = createTree();
     
-    add(tree, 4);
-    add(tree, 8);
-    add(tree, 3);
+    add(tree, 2);
     add(tree, 1);
+    add(tree, 6);
+    add(tree, 3);
+    add(tree, 7);
+    add(tree, 5);
+    add(tree, 4);
   
     int choose = 3;
     menu();
@@ -35,6 +39,15 @@ int main(int argc, char** argv) {
             case 2:
             {
                 printMax(tree);
+                cout << endl;
+                break;
+            }
+            case 3:
+            {
+                int element = 0;
+                cout << "Введите элемент, который хотите удалить: ";
+                cin >> element;
+                remove(tree, element);
                 cout << endl;
                 break;
             }

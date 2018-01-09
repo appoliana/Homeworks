@@ -7,9 +7,6 @@ struct BinarySearchTree;
 // бинарный поиск
 BinarySearchTree *createTree();
 
-// удаление узла
-void clearNode(TreeNode *node);
-
 // удаление дерева  
 void clearTree(BinarySearchTree *tree);
 
@@ -24,3 +21,6 @@ void printMax(BinarySearchTree *tree);
 
 // печать элементов дерева по возрастанию
 void printMin(BinarySearchTree *tree);
+
+// удаление элемента из дерева
+void remove(BinarySearchTree *tree, int value);

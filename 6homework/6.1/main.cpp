@@ -15,6 +15,8 @@ int main(int argc, char** argv) {
         if (array[i] == '*' || array[i] == '+' || array[i] == '-' || array[i] == '/') {
             if (isEmpty(stack)) {
                 cout << "Введите выражение в ПОСТФИКСНОЙ форме" << endl;
+                deleteStack(stack);
+                delete[] array;
                 return 1;
             }
             else { 
@@ -35,7 +37,7 @@ int main(int argc, char** argv) {
             } 
         }
         else {
-            push(stack, array[i]);
+            push(stack, array[i] - '0');
         }
     }
     int result = pop(stack);

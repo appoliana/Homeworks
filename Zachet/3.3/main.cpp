@@ -15,9 +15,11 @@ bool isRight(char ch) {
 
 int main(int argc, char** argv) 
 {
-    char str[100] = "_4hd";
+    char str[1000];
+    cout << "Enter the string you want to check: " << endl;
+    cin >> str;
+    cout << endl;
     int i = 0;
-    bool alphaWas = false;
     Status state = Status::start;
     while (str[i] != '\0') 
     {
@@ -49,8 +51,12 @@ int main(int argc, char** argv)
                 }
                 break;
             }
+            
             default:
+            {
+                state = Status::fail;
                 break; 
+            }
         }
         if (state == Status::fail) 
         {
